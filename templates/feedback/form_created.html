@@ -14,21 +14,22 @@
 <body class="bg-light">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
+ <nav class="navbar navbar-expand-lg bg-warning shadow">
 
-        <a class="navbar-brand fw-bold" href="{% url 'dashboard' %}">
-           RateWise
+    <div class="container-xxl px-3">
+
+        <a class="navbar-brand fw-bold fs-2 text-dark" href="#">
+            RateWise
         </a>
 
-        <div class="ms-auto">
-            <a href="{% url 'logout' %}" class="btn btn-outline-light">
-                Logout
-            </a>
-        </div>
+            <div class="ms-auto">
+                <a href="{% url 'logout' %}" class="btn btn-outline-dark fw-semibold px-4">
+                    Logout
+                </a>
+            </div>
 
-    </div>
-</nav>
+        </div>
+    </nav>
 
 <!-- Content -->
 <div class="container mt-5">
@@ -39,7 +40,7 @@
 
             <div class="card shadow">
 
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-warning">
                     <h3 class="mb-0">
                         Form Created Successfully 
                     </h3>
@@ -57,12 +58,12 @@
                             type="text"
                             id="formLink"
                             class="form-control"
-                            value="feedback-gen-2.onrender.com/feedback/form/{{ form.id }}/"
+                            value="http://127.0.0.1:8000/feedback/form/{{ form.id }}/"
                             readonly
                         >
 
                         <button
-                            class="btn btn-primary"
+                            class="btn btn-outline-dark fw-semibold px-4"
                             onclick="copyLink()"
                         >
                             Copy Link
@@ -77,12 +78,12 @@
                     <div class="d-flex gap-2">
 
                         <a href="{% url 'create_form' %}"
-                           class="btn btn-outline-primary">
+                           class="btn btn-outline-dark fw-semibold px-4">
                             Create Another Form
                         </a>
 
                         <a href="{% url 'dashboard' %}"
-                           class="btn btn-primary">
+                           class="btn btn-outline-dark fw-semibold px-4">
                             Back to Dashboard
                         </a>
 
