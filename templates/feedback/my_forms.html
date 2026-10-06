@@ -78,13 +78,6 @@
                                     
                                     {% else %}
 
-                                    {% comment %} <a href="{% url 'delete_form' form.id %}"
-                                    class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this form and all its responses?');">
-
-                                        Delete Form
-
-                                    </a> {% endcomment %}
                                     <form method="POST" action="{% url 'delete_form' form.id %}" onsubmit="return confirm('Are you sure you want to delete this form and all its responses?');">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger">
@@ -102,7 +95,7 @@
                                     <a href="{% url 'form_analytics' form.id %}" class="btn btn-success">
                                         View Analytics
                                     </a>
-                                    <a href="{% url 'ai_analysis' form.id %}" class="btn btn-success">
+                                    <a href="{% url 'ai_analysis' form.id %}" class="btn btn-success ai-analysis-btn">
                                         AI Analysis
                                     </a>
 
@@ -131,14 +124,52 @@
     </div>
 
 </div>
+<div id="loadingOverlay"
+     class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none"
+     style="z-index: 1055;">
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+
+        <div class="card shadow p-5 text-center" style="max-width:450px; width:100%;">
+
+            <h3 class="mb-3">Analyzing Sentiment</h3>
+
+            <p class="text-muted">
+                Please wait while AI analyzes the feedback...
+            </p>
+
+            <div class="progress">
+
+                <div class="progress-bar progress-bar-striped progress-bar-animated w-100">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
-    function copyLink(link) {
 
-        navigator.clipboard.writeText(link);
+function copyLink(link) {
 
-        alert("Form link copied!");
-    }
+    navigator.clipboard.writeText(link);
+
+    alert("Form link copied!");
+}
+
+document.querySelectorAll(".ai-analysis-btn").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        document.getElementById("loadingOverlay").classList.remove("d-none");
+
+    });
+
+});
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
